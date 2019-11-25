@@ -31,14 +31,14 @@ void Entity::stay() {
 	frameIndex = 1;
 }
 void Entity::goForward(clock_t deltaTime) {
-	this->position->y -= speed * deltaTime;	
+	this->position->y -= speed * deltaTime;
 	animationIndex = ANIMATION_FORWARD;
 	renewFrameIndex(deltaTime);
 	this->endGo(0, -1);
 }
 void Entity::goBackward(clock_t deltaTime) {
 	this->position->y += speed * deltaTime;
-	animationIndex = ANIMATION_BACKWARD;	
+	animationIndex = ANIMATION_BACKWARD;
 	renewFrameIndex(deltaTime);
 	this->endGo(0, 1);
 }
@@ -50,29 +50,17 @@ void Entity::goLeft(clock_t deltaTime) {
 }
 void Entity::goRight(clock_t deltaTime) {
 	this->position->x += speed * deltaTime;
-	animationIndex = ANIMATION_RIGHT;	
+	animationIndex = ANIMATION_RIGHT;
 	renewFrameIndex(deltaTime);
 	this->endGo(1, 0);
 }
 void Entity::endGo(int x, int y)
 {
-	
+
 }
-bool Entity::checkCollision(GameObject* obj){
-	if(this == obj)
-	{
-		return false;
-	}
-	float deltaX = this->position->x - obj->position->x;
-	float deltaY = this->position->y - obj->position->y;
-	if((deltaX<0&&(-deltaX)<this->position->width)|| (deltaX >= 0 && (deltaX) < obj->position->width))
-	{
-		if ((deltaY < 0 && (-deltaY) < this->position->height) || (deltaY >= 0 && (deltaY) < obj->position->height))
-		{
-			return true;
-		}
-	}
-	return false;
+
+void Entity::tick(clock_t deltaTime){
+
 }
 
 

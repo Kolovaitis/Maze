@@ -17,7 +17,7 @@ class Entity: public GameObject
 public:
 	
 	
-	//Map* parent;
+	
 	float speed;
 	
 	CharacterView characterView;
@@ -26,8 +26,9 @@ public:
 	void goLeft(clock_t deltaTime);
 	void goRight(clock_t deltaTime);
 	void stay();
+	virtual void tick(clock_t deltaTime);
 	void renewFrameIndex(clock_t deltaTime);
-	bool checkCollision(GameObject* obj);
+	
 	virtual void endGo(int x, int y);
 	int animationIndex;
 	int frameIndex;

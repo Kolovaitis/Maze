@@ -3,27 +3,20 @@ View::View() {
 	map = new Map();
 	window = new sf::RenderWindow(sf::VideoMode{ map->width*SCALE_X, map->height*SCALE_Y }, "My window");
 
-	window->setFramerateLimit(FRAME_RATE);
-
-	
-
-
-	//View view(100, 100, &window);
-	
 	for(int i = 0; i<textureCount;i++)
 	{
 		textures[i] = new sf::Texture();
 		if (!textures[i]->loadFromFile(fileNames[i]))
 		{
-			printf("Error");
+			printf("Error %s", fileNames[i]);
 		}
 		textures[i]->setRepeated(true);
 		sprites[i] = new sf::Sprite(*textures[i], rectSourceSprite);
 		sprites[i]->setScale(sf::Vector2f{ SCALE_X,SCALE_Y });
 	}
-	
-
-	
+	oxygenLevelShape = new sf::RectangleShape();
+	oxygenLevelShape->setFillColor(sf::Color(0,0,255));
+	oxygenLevelShape->setScale(sf::Vector2f{ SCALE_X,SCALE_Y });
 }
 void View::start()
 {
@@ -57,11 +50,23 @@ void View::drawEntity(Entity* obj)
 	int index = obj->TYPE;
 	if (index == TYPE_PLAYER)
 	{
-		index += ((Player*)obj)->index;
+		index += ((Player*)obj)->index;		
+	
+		if (((Player*)obj)->alive) {
+			oxygenLevelShape->setSize(sf::Vector2f(((Player*)obj)->oxygenLevel * PLAYER_TEXTURE_WIDTH, OXYGEN_LEVEL_WIDTH));
+			oxygenLevelShape->setPosition(sf::Vector2f(obj->position->x * SCALE_X, (obj->position->y-OXYGEN_LEVEL_WIDTH) * SCALE_Y));
+			window->draw(*oxygenLevelShape);
+			sprites[index]->setColor(sf::Color(255, 255, 255));
+		}
+		else
+		{
+			sprites[index]->setColor(sf::Color(128, 128, 128));
+		}
 	}
 	sprites[index]->setTextureRect(rectSourceSprite);
 	sprites[index]->setPosition(SCALE_X * obj->position->x, SCALE_Y * obj->position->y);
 	window->draw(*sprites[index]);
+
 }
 void View::drawGameObject(GameObject* obj)
 {
@@ -72,9 +77,9 @@ void View::drawGameObject(GameObject* obj)
 	else
 	{
 
-		rectSourceSprite.left = obj->position->x;
+		rectSourceSprite.left = 0;
 		rectSourceSprite.width = obj->position->width;
-		rectSourceSprite.top = obj->position->y;
+		rectSourceSprite.top = 0;
 		rectSourceSprite.height = obj->position->height;
 		sprites[obj->TYPE]->setTextureRect(rectSourceSprite);
 		sprites[obj->TYPE]->setPosition(SCALE_X * obj->position->x, SCALE_Y * obj->position->y);

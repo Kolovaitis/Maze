@@ -1,0 +1,23 @@
+﻿  Main.cpp
+  Map.cpp
+C:\C\Maze\SFML\SFML\Map.cpp(15,56): warning C4244: аргумент: преобразование "unsigned int" в "float", возможна потеря данных
+C:\C\Maze\SFML\SFML\Map.cpp(15,40): warning C4244: аргумент: преобразование "unsigned int" в "float", возможна потеря данных
+C:\C\Maze\SFML\SFML\Map.cpp(30,54): warning C4244: аргумент: преобразование "unsigned int" в "float", возможна потеря данных
+C:\C\Maze\SFML\SFML\Map.cpp(33,50): warning C4244: аргумент: преобразование "unsigned int" в "float", возможна потеря данных
+C:\C\Maze\SFML\SFML\Map.cpp(41,27): warning C4244: аргумент: преобразование "time_t" в "clock_t", возможна потеря данных
+C:\C\Maze\SFML\SFML\Map.cpp(44,26): warning C4244: аргумент: преобразование "time_t" в "clock_t", возможна потеря данных
+C:\C\Maze\SFML\SFML\Map.cpp(47,23): warning C4244: аргумент: преобразование "time_t" в "clock_t", возможна потеря данных
+  View.cpp
+C:\C\Maze\SFML\SFML\Map.cpp(50,24): warning C4244: аргумент: преобразование "time_t" в "clock_t", возможна потеря данных
+C:\C\Maze\SFML\SFML\View.cpp(75,40): warning C4244: =: преобразование "float" в "T", возможна потеря данных
+C:\C\Maze\SFML\SFML\View.cpp(75,40): warning C4244:         with
+C:\C\Maze\SFML\SFML\View.cpp(75,40): warning C4244:         [
+C:\C\Maze\SFML\SFML\View.cpp(75,40): warning C4244:             T=int
+C:\C\Maze\SFML\SFML\View.cpp(75,40): warning C4244:         ]
+  Создание кода...
+C:\C\Maze\SFML\SFML\View.cpp(77,39): warning C4244: =: преобразование "float" в "T", возможна потеря данных
+C:\C\Maze\SFML\SFML\View.cpp(77,39): warning C4244:         with
+C:\C\Maze\SFML\SFML\View.cpp(77,39): warning C4244:         [
+C:\C\Maze\SFML\SFML\View.cpp(77,39): warning C4244:             T=int
+C:\C\Maze\SFML\SFML\View.cpp(77,39): warning C4244:         ]
+  SFML.vcxproj -> C:\C\Maze\SFML\Debug\SFML.exe

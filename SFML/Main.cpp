@@ -1,8 +1,7 @@
-#include "View.h"
-#include "Map.h"
-#include <SFML/Graphics.hpp>
+#include "StartMenu.h"
+
 int main() {
-	View obj;
-	obj.start();
+	StartMenu obj;
+	obj.startApp();
 	return 0;
 }

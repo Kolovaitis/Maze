@@ -1,25 +1,35 @@
 #include "View.h"
 View::View() {
+	
+	
 	map = new Map();
-	window = new sf::RenderWindow(sf::VideoMode{ map->width*SCALE_X, map->height*SCALE_Y }, "My window");
-
-	for(int i = 0; i<textureCount;i++)
+	for (int i = 0; i < textureCount; i++)
 	{
 		textures[i] = new sf::Texture();
 		if (!textures[i]->loadFromFile(fileNames[i]))
 		{
-			printf("Error %s", fileNames[i]);
+			printf("Error %s", fileNames[i].c_str());
 		}
 		textures[i]->setRepeated(true);
 		sprites[i] = new sf::Sprite(*textures[i], rectSourceSprite);
 		sprites[i]->setScale(sf::Vector2f{ SCALE_X,SCALE_Y });
 	}
 	oxygenLevelShape = new sf::RectangleShape();
-	oxygenLevelShape->setFillColor(sf::Color(0,0,255));
+	oxygenLevelShape->setFillColor(sf::Color(0, 0, 255));
 	oxygenLevelShape->setScale(sf::Vector2f{ SCALE_X,SCALE_Y });
+	if (!backgroundTexture.loadFromFile(backgroundTexturePath))
+	{
+		printf("Background resoursce is not exist\n");
+	}
+	backgroundTexture.setRepeated(true);
+	backgroundSprite.setTexture(backgroundTexture);
+	backgroundSprite.setScale(sf::Vector2f{ SCALE_X,SCALE_Y });
+	backgroundSprite.setTextureRect(sf::IntRect(0, 0, map->width, map->height));
 }
 void View::start()
 {
+	
+	window = new sf::RenderWindow(sf::VideoMode{ map->width * SCALE_X, map->height * SCALE_Y }, "Game");
 	while (window->isOpen())
 	{
 		sf::Event event;
@@ -30,16 +40,61 @@ void View::start()
 				break;
 			}
 		}
+
 		
-		window->display();
-		
+
 		loop();
+		window->display();
+		if(map->isGameOver)
+		{
+			gameOver();
+		}
 		
+	}
+	delete this;
+}
+void View::gameOver()
+{
+	if (!backgroundTexture.loadFromFile(gameOverImages[map->winnerIndex]))
+	{
+		printf("Winner image is not exist\n");
+	}	
+	
+	window->draw(backgroundSprite);
+	if (!backgroundTexture.loadFromFile(gameOverImage))
+	{
+		printf("Game over image is not exist\n");
+	}
+
+	
+	window->draw(backgroundSprite);
+	window->display();
+	while (window->isOpen())
+	{
+		sf::Event event;
+		while (window->pollEvent(event)) {
+			switch (event.type) {
+			case sf::Event::Closed:
+				window->close();
+				break;
+			}
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+		{
+			window->close();
+			break;
+		}
 	}
 }
 View::~View() {
-	/*free(window);
-	free(shape);*/
+	delete(window);
+	for (int i = 0; i < textureCount; i++)
+	{
+		delete(sprites[i]);
+		delete(textures[i]);
+	}
+	delete(oxygenLevelShape);
+	delete map;
 }
 void View::drawEntity(Entity* obj)
 {
@@ -50,11 +105,11 @@ void View::drawEntity(Entity* obj)
 	int index = obj->TYPE;
 	if (index == TYPE_PLAYER)
 	{
-		index += ((Player*)obj)->index;		
-	
+		index += ((Player*)obj)->index;
+
 		if (((Player*)obj)->alive) {
 			oxygenLevelShape->setSize(sf::Vector2f(((Player*)obj)->oxygenLevel * PLAYER_TEXTURE_WIDTH, OXYGEN_LEVEL_WIDTH));
-			oxygenLevelShape->setPosition(sf::Vector2f(obj->position->x * SCALE_X, (obj->position->y-OXYGEN_LEVEL_WIDTH) * SCALE_Y));
+			oxygenLevelShape->setPosition(sf::Vector2f(obj->position->x * SCALE_X, (obj->position->y - OXYGEN_LEVEL_WIDTH) * SCALE_Y));
 			window->draw(*oxygenLevelShape);
 			sprites[index]->setColor(sf::Color(255, 255, 255));
 		}
@@ -99,10 +154,10 @@ void View::loop()
 	actions[1] |= sf::Keyboard::isKeyPressed(sf::Keyboard::A) ? GO_LEFT : 0;
 	actions[1] |= sf::Keyboard::isKeyPressed(sf::Keyboard::D) ? GO_RIGHT : 0;
 	map->tick(actions);
-	window->clear(sf::Color::Yellow);
+	window->draw(backgroundSprite);
 	for (int i = 0; i < map->objCount; i++)
 	{
 		drawGameObject(map->positions[i]);
-	}	 
-	
+	}
+
 }

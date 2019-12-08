@@ -1,4 +1,2 @@
-﻿  Player.cpp
-C:\C\Maze\SFML\SFML\Player.cpp(10,19): warning C4305: =: усечение из "double" в "float"
-C:\C\Maze\SFML\SFML\Player.cpp(11,13): warning C4305: =: усечение из "double" в "float"
-  SFML.vcxproj -> C:\C\Maze\SFML\Debug\SFML.exe
+﻿  StartMenu.cpp
+  SFML.vcxproj -> D:\University\ЯП\Курсовой\Maze\Debug\SFML.exe

@@ -3,18 +3,24 @@
 
 Map::Map() {
 	srand(time(NULL));
-
 	this->lastTime = clock();
-
 	objCount = 0;
 	addWalls();
 	addPlayers();
 	generateOxygen();
 	addMonsters();
 }
+
+Map::~Map()
+{
+	for (int i = 0; i < objCount; i++) {
+		delete(positions[i]);
+	}
+}
+
 void Map::generateOxygen()
 {
-	Position* pos = (Position*)malloc(sizeof * pos);
+	Position* pos = new Position;
 	pos->height = OXYGEN_WIDTH;
 	pos->width = OXYGEN_WIDTH;
 	do
@@ -29,10 +35,10 @@ void Map::generateOxygen()
 }
 void Map::generateWall(float x, float y)//Придумать
 {
-	positions[objCount] = new GameObject(x*STANDART_WALL_WIDTH, y*STANDART_WALL_HEIGHT, STANDART_WALL_WIDTH, STANDART_WALL_HEIGHT);
+	positions[objCount] = new GameObject(x * STANDART_WALL_WIDTH, y * STANDART_WALL_HEIGHT, STANDART_WALL_WIDTH, STANDART_WALL_HEIGHT);
 	positions[objCount]->TYPE = TYPE_WALL;
 	objCount++;
-	
+
 }
 bool Map::checkAllCollisions(Position* pos)
 {
@@ -64,7 +70,7 @@ void Map::addMonsters()
 		objCount++;
 		monsters[i]->characterView.objCount = &objCount;
 		monsters[i]->characterView.positions = &positions[0];
-		
+
 	}
 }
 void Map::addWalls()
@@ -82,7 +88,7 @@ void Map::addWalls()
 	positions[objCount]->TYPE = TYPE_WALL;
 	objCount++;
 	float y = 0;
-	for(int i=3;i<WALL_COUNT;i++)
+	for (int i = 3; i < WALL_COUNT; i++)
 	{
 		if (rand() % 2) {
 			y += rand() % 3 - 1;
@@ -118,6 +124,10 @@ void Map::tick(char actions[]) {
 				players[i]->stay();
 			}
 			players[i]->tick(deltaTime);
+		}else
+		{
+			isGameOver = true;
+			winnerIndex = i == 0 ? 1 : 0;
 		}
 	}
 	for (int i = 0; i < MONSTER_COUNT; i++) {

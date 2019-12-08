@@ -21,6 +21,7 @@ private:
 	void drawEntity(Entity* obj);
 	void drawGameObject(GameObject* obj);
 	void loop();
+	void gameOver();
 	Map* map;
 	sf::RenderWindow* window;
 	sf::IntRect rectSourceSprite;
@@ -28,5 +29,11 @@ private:
 	sf::Texture* textures[textureCount];
 	sf::RectangleShape* oxygenLevelShape;
 	std::string fileNames[textureCount] = { "images/player1.png", "images/player2.png" ,"" ,"images/Wall.png", "images/oxygen.png" , "images/monster.png"};
+	sf::Texture backgroundTexture;
+	sf::Sprite backgroundSprite;
+	std::string backgroundTexturePath = "images/ground.png";
+	std::string gameOverImage = "images/game_over.png";
+	std::string gameOverImages[PLAYER_COUNT] = { "images/winner_right.png", "images/winner_left.png"};
+	
 };
 

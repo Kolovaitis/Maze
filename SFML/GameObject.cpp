@@ -2,12 +2,12 @@
 
 
 GameObject::GameObject() {
-	position = (Position*)malloc(sizeof * position);
+	position = new Position;
 	
 }
 GameObject::GameObject(float x, float y, int width, int height)
 {
-	position = (Position*)malloc(sizeof * position);
+	this->GameObject::GameObject();
 	position->x = x;
 	position->y = y;
 	position->height = height;

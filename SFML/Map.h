@@ -27,8 +27,11 @@ public:
 	
 	void tick(char actions[]);	
 	Map();
+	~Map();
 	const unsigned int width = 512;
 	const unsigned int height = 256;
+	bool isGameOver = false;
+	int winnerIndex = -1;
 	
 	
 private:

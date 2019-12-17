@@ -9,7 +9,7 @@
 #define SCALE_Y 2
 #define OXYGEN_LEVEL_WIDTH 4
 
-#define textureCount 6
+#define textureCount 5
 
 class View
 {
@@ -28,7 +28,7 @@ private:
 	sf::Sprite* sprites[textureCount];
 	sf::Texture* textures[textureCount];
 	sf::RectangleShape* oxygenLevelShape;
-	std::string fileNames[textureCount] = { "images/player1.png", "images/player2.png" ,"" ,"images/Wall.png", "images/oxygen.png" , "images/monster.png"};
+	std::string fileNames[textureCount] = { "images/player1.png", "images/player2.png"  ,"images/Wall.png", "images/oxygen.png" , "images/monster.png"};
 	sf::Texture backgroundTexture;
 	sf::Sprite backgroundSprite;
 	std::string backgroundTexturePath = "images/ground.png";

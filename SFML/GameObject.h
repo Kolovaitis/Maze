@@ -1,9 +1,9 @@
 #pragma once
 #define TYPE_PLAYER 0
-#define TYPE_NOTHING 2
-#define TYPE_WALL 3
-#define TYPE_OXYGEN 4
-#define TYPE_MONSTER 5
+#define TYPE_NOTHING -1
+#define TYPE_WALL 2
+#define TYPE_OXYGEN 3
+#define TYPE_MONSTER 4
 #include <cstdlib>
 typedef struct Position
 {

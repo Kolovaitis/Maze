@@ -29,7 +29,7 @@ View::View() {
 void View::start()
 {
 	
-	window = new sf::RenderWindow(sf::VideoMode{ map->width * SCALE_X, map->height * SCALE_Y }, "Game");
+	window = new sf::RenderWindow(sf::VideoMode{ map->width * SCALE_X, map->height * SCALE_Y }, "Game", sf::Style::None);
 	while (window->isOpen())
 	{
 		sf::Event event;
@@ -37,6 +37,14 @@ void View::start()
 			switch (event.type) {
 			case sf::Event::Closed:
 				window->close();
+				break;
+
+			case sf::Event::KeyPressed:
+				if (event.key.code == sf::Keyboard::Escape)
+				{
+					window->close();
+					break;
+				}
 				break;
 			}
 		}
@@ -51,7 +59,7 @@ void View::start()
 		}
 		
 	}
-	delete this;
+	//delete this;
 }
 void View::gameOver()
 {
@@ -78,8 +86,9 @@ void View::gameOver()
 				window->close();
 				break;
 			}
+			
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)|| sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
 			window->close();
 			break;
@@ -94,7 +103,7 @@ View::~View() {
 		delete(textures[i]);
 	}
 	delete(oxygenLevelShape);
-	delete map;
+	//delete map;
 }
 void View::drawEntity(Entity* obj)
 {

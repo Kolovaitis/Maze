@@ -37,6 +37,8 @@ public:
 private:
 	const float speed = 0.5;
 	void addWalls();
+	void addBorts();
+	void addRandomWalls();
 	void addPlayers();
 	void addMonsters();
 	void generateOxygen();

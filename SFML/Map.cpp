@@ -51,6 +51,27 @@ bool Map::checkAllCollisions(Position* pos)
 	}
 	return false;
 }
+
+void Map::addRandomWalls()
+{
+	float y = 0;
+	for (int i = 3; i < WALL_COUNT; i++)
+	{
+		if (rand() % 2) {
+			y += rand() % 3 - 1;
+			if (y < 0)
+			{
+				y = 0;
+			}
+			if (y > this->height / STANDART_WALL_HEIGHT)
+			{
+				y = height / STANDART_WALL_HEIGHT;
+			}
+			generateWall(i, y);
+		}
+	}
+}
+
 void Map::addPlayers()
 {
 	for (int i = 0; i < PLAYER_COUNT; i++) {
@@ -73,8 +94,12 @@ void Map::addMonsters()
 
 	}
 }
-void Map::addWalls()
-{
+void Map::addWalls(){
+	addBorts();
+	addRandomWalls();	
+}
+
+void Map::addBorts(){
 	positions[objCount] = new GameObject(0, 0, STANDART_WALL_WIDTH, this->height);
 	positions[objCount]->TYPE = TYPE_WALL;
 	objCount++;
@@ -87,23 +112,8 @@ void Map::addWalls()
 	positions[objCount] = new GameObject(this->width - STANDART_WALL_WIDTH, 0, STANDART_WALL_WIDTH, this->height);
 	positions[objCount]->TYPE = TYPE_WALL;
 	objCount++;
-	float y = 0;
-	for (int i = 3; i < WALL_COUNT; i++)
-	{
-		if (rand() % 2) {
-			y += rand() % 3 - 1;
-			if (y < 0)
-			{
-				y = 0;
-			}
-			if (y > this->height / STANDART_WALL_HEIGHT)
-			{
-				y = height / STANDART_WALL_HEIGHT;
-			}
-			generateWall(i, y);
-		}
-	}
 }
+
 void Map::tick(char actions[]) {
 	time_t deltaTime = clock() - lastTime;
 	for (int i = 0; i < PLAYER_COUNT; i++) {

@@ -13,56 +13,44 @@ Player::Player(float x, float y) {
 	oxygenLevel = 1.0;
 	alive = true;
 }
-void Player::endGo(int x, int y)
+
+
+void Player::oxygenBehavior(int x, int y, GameObject* obj)
 {
-	for(int i = 0; i<*characterView.objCount;i++)
+	for(int i = 0; i<*this->characterView.objCount; i++)
 	{
-		if(checkCollision(characterView.positions[i]))
+		if(this->characterView.positions[i] == obj)
 		{
-			switch (characterView.positions[i]->TYPE) {
-				
-			case TYPE_PLAYER:
-				
-			case TYPE_WALL:
-				switch (x)
-				{
-				case -1:
-					this->position->x = characterView.positions[i]->position->x+ characterView.positions[i]->position->width;
-					break;
-				case 1:
-					this->position->x = characterView.positions[i]->position->x - this->position->width;
-					break;
-
-				}
-				switch (y)
-				{
-				case -1:
-					this->position->y = characterView.positions[i]->position->y + characterView.positions[i]->position->height;
-					break;
-				case 1:
-					this->position->y = characterView.positions[i]->position->y - this->position->height;
-					break;
-
-				}
-				break;
-			case TYPE_OXYGEN:
-				delete characterView.positions[i];
-				(*characterView.objCount)--;
-				characterView.positions[i] = characterView.positions[*characterView.objCount];
-				this->oxygenLevel = 1.0;
-				break;
-			case TYPE_MONSTER:
-				this->alive = false;
-				break;
-			}
+			delete obj;
+			(*characterView.objCount)--;
+			characterView.positions[i] = characterView.positions[*characterView.objCount];
+			break;
 		}
-	}
+	}	
+	
+	
+	this->oxygenLevel = 1.0;
 }
+
+void Player::monsterBehavior(int x, int y, GameObject* obj)
+{
+	this->death();
+}
+
+void Player::playerBehavior(int x, int y, GameObject* obj)
+{
+	barrierBehavior(x, y, obj);
+}
+
 void Player::tick(clock_t deltaTime)
 {
 	oxygenLevel -= deltaTime * OXYGEN_SPEED;
 	if(oxygenLevel<0)
 	{
-		alive = false;
+		this->death();
 	}
+}
+inline void Player::death()
+{
+	this->alive = false;
 }

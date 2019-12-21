@@ -14,12 +14,8 @@ typedef struct CharacterView{
 class Entity: public GameObject
 {
 	
-public:
-	
-	
-	
-	float speed;
-	
+public:	
+	float speed;	
 	CharacterView characterView;
 	void goForward(clock_t deltaTime);
 	void goBackward(clock_t deltaTime);
@@ -27,9 +23,14 @@ public:
 	void goRight(clock_t deltaTime);
 	void stay();
 	virtual void tick(clock_t deltaTime);
-	void renewFrameIndex(clock_t deltaTime);
-	
-	virtual void endGo(int x, int y);
+	void renewFrameIndex(clock_t deltaTime);	
+	virtual void endGo(int x, int y, clock_t delta_time);
+	void barrierBehavior(int x, int y, GameObject* obj);
+	void collisionAnalize(int x, int y);
+	virtual void wallBehavior(int x, int y, GameObject* obj);
+	virtual void monsterBehavior(int x, int y, GameObject* obj);
+	virtual void playerBehavior(int x, int y, GameObject* obj);
+	virtual void oxygenBehavior(int x, int y, GameObject* obj);
 	int animationIndex;
 	int frameIndex;
 	int frameCount;

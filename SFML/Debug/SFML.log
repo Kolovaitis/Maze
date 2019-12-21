@@ -1,2 +1,32 @@
-﻿  StartMenu.cpp
+﻿  Main.cpp
+  Map.cpp
+D:\University\ЯП\Курсовой\Maze\SFML\Map.cpp(5,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+D:\University\ЯП\Курсовой\Maze\SFML\Map.cpp(28,32): warning C4244: =: преобразование "unsigned int" в "float", возможна потеря данных
+D:\University\ЯП\Курсовой\Maze\SFML\Map.cpp(29,32): warning C4244: =: преобразование "unsigned int" в "float", возможна потеря данных
+D:\University\ЯП\Курсовой\Maze\SFML\Map.cpp(68,16): warning C4244: =: преобразование "unsigned int" в "float", возможна потеря данных
+D:\University\ЯП\Курсовой\Maze\SFML\Map.cpp(70,17): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+D:\University\ЯП\Курсовой\Maze\SFML\Map.cpp(78,56): warning C4244: аргумент: преобразование "unsigned int" в "float", возможна потеря данных
+D:\University\ЯП\Курсовой\Maze\SFML\Map.cpp(78,40): warning C4244: аргумент: преобразование "unsigned int" в "float", возможна потеря данных
+D:\University\ЯП\Курсовой\Maze\SFML\Map.cpp(109,55): warning C4244: аргумент: преобразование "unsigned int" в "float", возможна потеря данных
+D:\University\ЯП\Курсовой\Maze\SFML\Map.cpp(112,51): warning C4244: аргумент: преобразование "unsigned int" в "float", возможна потеря данных
+D:\University\ЯП\Курсовой\Maze\SFML\Map.cpp(122,28): warning C4244: аргумент: преобразование "time_t" в "clock_t", возможна потеря данных
+D:\University\ЯП\Курсовой\Maze\SFML\Map.cpp(125,27): warning C4244: аргумент: преобразование "time_t" в "clock_t", возможна потеря данных
+D:\University\ЯП\Курсовой\Maze\SFML\Map.cpp(128,24): warning C4244: аргумент: преобразование "time_t" в "clock_t", возможна потеря данных
+D:\University\ЯП\Курсовой\Maze\SFML\Map.cpp(131,25): warning C4244: аргумент: преобразование "time_t" в "clock_t", возможна потеря данных
+D:\University\ЯП\Курсовой\Maze\SFML\Map.cpp(136,21): warning C4244: аргумент: преобразование "time_t" в "clock_t", возможна потеря данных
+  Monster.cpp
+D:\University\ЯП\Курсовой\Maze\SFML\Map.cpp(144,21): warning C4244: аргумент: преобразование "time_t" в "clock_t", возможна потеря данных
+D:\University\ЯП\Курсовой\Maze\SFML\Monster.cpp(13,19): warning C4305: =: усечение из "double" в "float"
+  Player.cpp
+D:\University\ЯП\Курсовой\Maze\SFML\Monster.cpp(14,14): warning C4305: =: усечение из "double" в "float"
+D:\University\ЯП\Курсовой\Maze\SFML\Player.cpp(10,19): warning C4305: =: усечение из "double" в "float"
+  StartMenu.cpp
+  View.cpp
+D:\University\ЯП\Курсовой\Maze\SFML\Player.cpp(11,13): warning C4305: =: усечение из "double" в "float"
+  Создание кода...
+D:\University\ЯП\Курсовой\Maze\SFML\View.cpp(120,71): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+D:\University\ЯП\Курсовой\Maze\SFML\View.cpp(120,71): warning C4244:         with
+D:\University\ЯП\Курсовой\Maze\SFML\View.cpp(120,71): warning C4244:         [
+D:\University\ЯП\Курсовой\Maze\SFML\View.cpp(120,71): warning C4244:             T=float
+D:\University\ЯП\Курсовой\Maze\SFML\View.cpp(120,71): warning C4244:         ]
   SFML.vcxproj -> D:\University\ЯП\Курсовой\Maze\Debug\SFML.exe

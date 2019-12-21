@@ -34,43 +34,23 @@ void Monster::tick(clock_t deltaTime)
 		case 3:goRight(deltaTime);
 			break;
 	}
+	
 }
-void Monster::endGo(int x, int y)
+
+
+void Monster::wallBehavior(int x, int y, GameObject* obj)
 {
-	for (int i = 0; i < *characterView.objCount; i++)
-	{
-		if (checkCollision(characterView.positions[i]))
-		{
-			switch (characterView.positions[i]->TYPE) {
+	needChange = true;
+	barrierBehavior(x, y, obj);
+}
 
-			
-			case TYPE_WALL:
-				needChange = true;
-				switch (x)
-				{
-				case -1:
-					this->position->x = characterView.positions[i]->position->x + characterView.positions[i]->position->width;
-					break;
-				case 1:
-					this->position->x = characterView.positions[i]->position->x - this->position->width;
-					break;
+void Monster::playerBehavior(int x, int y, GameObject* obj)
+{
+	((Player*)obj)->death();
+}
 
-				}
-				switch (y)
-				{
-				case -1:
-					this->position->y = characterView.positions[i]->position->y + characterView.positions[i]->position->height;
-					break;
-				case 1:
-					this->position->y = characterView.positions[i]->position->y - this->position->height;
-					break;
-
-				}
-				break;
-			case TYPE_PLAYER:
-				((Player*)characterView.positions[i])->alive = false;
-				break;
-			}
-		}
-	}
+void Monster::monsterBehavior(int x, int y, GameObject* obj)
+{
+	needChange = true;
+	barrierBehavior(x, y, obj);
 }

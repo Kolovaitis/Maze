@@ -13,9 +13,14 @@ public:
 	static const int WIDTH = 32;
 	static const int HEIGHT = 32;
 	int index;
-	void endGo(int x, int y) override;
+	void oxygenBehavior(int x, int y, GameObject* obj) override;
+	void monsterBehavior(int x, int y, GameObject* obj) override;
+	void playerBehavior(int x, int y, GameObject* obj)override;
 	double oxygenLevel;
 	void tick(clock_t deltaTime)override;
+	void death();
 	bool alive;
 	};
+
+
 
